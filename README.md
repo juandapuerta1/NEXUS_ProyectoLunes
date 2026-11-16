@@ -97,7 +97,11 @@ playwright install chromium
 
 # 4. Ejecutar
 python main.py
+```bash
+# 5. (Opcional) Verificar ejecución de flujos alternativos y manejo de excepciones
+python main.py --alternativos
 ```
+
 
 ---
 
