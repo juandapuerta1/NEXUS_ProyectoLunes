@@ -1,6 +1,6 @@
 # Sistema de Scraping con Lector de Patrones
 
-> Proyecto académico — Diseño de Sistemas de Información
+> Proyecto académico - Diseño de Sistemas de Información
 > Instituto Tecnológico Metropolitano (ITM) · 2026
 
 Sistema automatizado que monitorea mesas de casino en vivo, detecta rachas repetidas en los resultados de cada ronda y envía alertas inmediatas al operador vía Telegram.
@@ -57,8 +57,8 @@ Consultar el modelo C4 completo (4 niveles) en el documento Entregable No. 2.
 - [x] Alerta inmediata a Telegram cuando se detecta el patrón al 100%
 - [x] Persistencia de señales en PostgreSQL (mock en desarrollo)
 - [x] Flujo alternativo: timeout de conexión con reintento automático
-- [ ] API REST (FastAPI) — proyectado para siguiente iteración
-- [ ] Dashboard web (React) — proyectado para siguiente iteración
+- [ ] API REST (FastAPI) - proyectado para siguiente iteración
+- [ ] Dashboard web (React) - proyectado para siguiente iteración
 
 ---
 
@@ -105,11 +105,18 @@ python main.py
 
 ```
 NEXUS_ProyectoLunes/
-├── config/            Variables de entorno y configuración
-├── db/                Mock de conexión a PostgreSQL
-├── main.py            Punto de entrada y orquestador del flujo
-├── requirements.txt   Dependencias del proyecto
-└── README.md          Este archivo
+├── nexus/                    Paquete principal del sistema
+│   ├── __init__.py
+│   ├── interfaces.py         ABCs: IPatronRule, IObserver, IAlertaRepository
+│   ├── facade.py             CasinoScraperFacade — patrón Facade
+│   ├── engine.py             PatronEngine — orquestador Observer + Interpreter
+│   ├── observers.py          TelegramObserver, DatabaseObserver — patrón Observer
+│   └── rules.py              CorteRachaRule — patrón Interpreter
+├── config/                   Variables de entorno y configuración
+├── db/                       Mock de conexión a PostgreSQL
+├── main.py                   Punto de entrada y orquestador del flujo
+├── requirements.txt          Dependencias del proyecto
+└── README.md                 Este archivo
 ```
 
 ---
@@ -136,12 +143,12 @@ NEXUS_ProyectoLunes/
 
 ## Enlaces
 
-- **Prototipo Figma**: https://www.figma.com/design/O2EGtqc4trFfd0F9rte7hP/Sistema-de-Scraping---Prototipo-AF
+- **Prototipo Figma**: https://www.figma.com/design/53VO7kbocA45oVei4qPMTO/El-equipo-de-andresconeo1129949-team-library?node-id=4313-2&p=f
 - **Tablero Trello**: https://trello.com/b/agFFc50y/sistema-de-scraping-backlog-hus
-- **Diagramas UML editables**: [agregar enlace Miro/Lucidchart]
+- **Diagramas UML editables**: https://miro.com/app/board/uXjVENzTNNE=/
 
 ---
 
 ## Docente
 
-Alexandra Guerrero Bocanegra — Diseño de Sistemas de Información — ITM — 2026
+Alexandra Guerrero Bocanegra - Diseño de Sistemas de Información - ITM - 2026
