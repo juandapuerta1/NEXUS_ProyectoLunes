@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Entorno virtual
+.venv/
+venv/
+env/
+
+# Variables de entorno (tokens, credenciales)
+.env
+.env.*
+
+# Playwright
+playwright-report/
+
+# IDEs
+.vscode/
+.idea/
+
+# macOS
+.DS_Store
