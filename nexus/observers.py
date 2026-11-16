@@ -27,14 +27,26 @@ class TelegramObserver(IObserver):
 
 
 class DatabaseObserver(IObserver):
+    """Suscriptor encargado de persistir señales detectadas en PostgreSQL."""
+
     def __init__(self, repository: IAlertaRepository) -> None:
         self.repository = repository
 
     def update(self, alerta: str) -> None:
         print(f"[DatabaseObserver] Guardando alerta: {alerta}")
-        self.repository.save(alerta)
+        try:
+            self.repository.save(alerta)
+        except Exception as exc:
+            print(f"[DatabaseObserver Error] Fallo controlado de persistencia: {exc}")
 
 
 class MockPostgresRepo(IAlertaRepository):
+    def __init__(self, conectado: bool = True) -> None:
+        self.conectado: bool = conectado
+        self.historial: list[str] = []
+
     def save(self, alerta: str) -> None:
+        if not self.conectado:
+            raise ConnectionError("No hay conexión a la base de datos PostgreSQL")
+        self.historial.append(alerta)
         print(f"[PostgreSQL Mock] Alerta guardada: {alerta}")
